@@ -3,7 +3,7 @@
 
 class B24_lead
 {
-    private $crm_host, $crm_port, $crm_path, $crm_login, $crm_pass, $crm_auth;
+    private $crm_host, $crm_port, $crm_path, $crm_login, $crm_pass, $crm_auth, $b24_assigned_id;
 
     public function __construct()
     {
@@ -38,6 +38,9 @@ class B24_lead
                     case ('crm_auth'):
                         $this->crm_auth = $item;
                         break;
+                    case ('b24_assigned_id'):
+                        $this->b24_assigned_id = $item;
+                        break;
                     default:
                         break;
                 }
@@ -59,6 +62,9 @@ class B24_lead
         }
         $params['STATUS_ID'] = $setStatus;
         $params['SOURCE_ID'] = $sourse;
+        if (empty($params['ASSIGNED_BY_ID']) && !empty($this->b24_assigned_id)) {
+            $params['ASSIGNED_BY_ID'] = $this->b24_assigned_id;
+        }
         if (!empty($this->crm_auth)) {
             $params['AUTH'] = CRM_AUTH;
         } elseif (!empty($this->crm_login) && !empty($this->crm_pass)) {
