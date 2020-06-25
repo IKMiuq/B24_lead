@@ -1,5 +1,4 @@
-# B24_lead
-in the development
+# B24_lead - in the development
 
 Создание лидов по API при помощи аутентификации по логину и паролю или через вебхук.
 
